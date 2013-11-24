@@ -17,6 +17,7 @@ module Princely
       @log_file = options[:log_file]
       @logger = options[:logger]
       @server_flag = options[:server_flag]
+      @include_js = options[:javascript]
     end
 
     # Returns the instance logger or Princely default logger
@@ -46,8 +47,9 @@ module Princely
     def executable_options
       options = []
       options << "--input=html"
+      options << "--javascript" if @include_js
       options << "--server" if @server_flag
-      options << "--log=#{log_file}"
+      options << "--log=#{log_file}" 
       options << @style_sheets
       options
     end
